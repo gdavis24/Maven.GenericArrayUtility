@@ -1,5 +1,11 @@
 package com.zipcodewilmington.arrayutility;
 
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Created by leon on 3/6/18.
  */
@@ -17,7 +23,10 @@ public class ArrayUtility <T>{
 //    }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
-        return null;
+        ArrayList<T> list = new ArrayList<T>(Arrays.asList(arrayToMerge));
+        list.addAll(Arrays.asList(genArray));
+        Integer count = Collections.frequency(list, valueToEvaluate);
+        return count;
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
