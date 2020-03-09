@@ -33,14 +33,27 @@ public class ArrayUtility <T>{
     public T getMostCommonFromMerge(T[] arrayToMerge) {
         ArrayList<T> list = new ArrayList<T>(Arrays.asList(arrayToMerge));
         list.addAll(Arrays.asList(genArray));
-
+        int n = list.size();
+        T temp = list.get(0);
         int maxCount = 1;
         int currentCount = 1;
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size() - 1; i++) {
             if (list.get(i) == list.get(i + 1))
-                maxCount++;
+                currentCount++;
+            else {
+                if (currentCount > maxCount) {
+                    maxCount = currentCount;
+                    temp = list.get(i - 1);
+                }
+                currentCount = 1;
+            }
         }
-        return null;
+        if (currentCount > maxCount){
+            maxCount = currentCount;
+            temp = list.get(n - 1);
+        }
+        System.out.println(temp);
+        return temp;
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
