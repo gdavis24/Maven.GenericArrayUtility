@@ -5,6 +5,7 @@ package com.zipcodewilmington.arrayutility;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 /**
  * Created by leon on 3/6/18.
@@ -30,11 +31,26 @@ public class ArrayUtility <T>{
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
+        ArrayList<T> list = new ArrayList<T>(Arrays.asList(arrayToMerge));
+        list.addAll(Arrays.asList(genArray));
+
+        int maxCount = 1;
+        int currentCount = 1;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == list.get(i + 1))
+                maxCount++;
+        }
         return null;
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        return null;
+        Integer count = 0;
+        for (int i = 0; i < genArray.length; i++) {
+            if (genArray[i] == valueToEvaluate){
+                count++;
+            }
+        }
+        return count;
     }
 
     public T[] removeValue(T valueToRemove) {
