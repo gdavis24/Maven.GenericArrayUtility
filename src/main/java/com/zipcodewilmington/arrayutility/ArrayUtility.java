@@ -2,6 +2,9 @@ package com.zipcodewilmington.arrayutility;
 
 
 
+import com.sun.tools.javac.util.ArrayUtils;
+import sun.security.util.ArrayUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -67,6 +70,22 @@ public class ArrayUtility <T>{
     }
 
     public T[] removeValue(T valueToRemove) {
-        return null;
+        int index = 0;
+        for (int i = 0; i < genArray.length; i++) {
+            if (genArray[i].equals(valueToRemove)) {
+                genArray[i] = null;
+                index++;
+            }
+        }
+        Integer newIndex = 0;
+        T[] newArray = new T[genArray.length - index];
+        for (int j = 0; j < genArray.length; j++) {
+            if (genArray[j] != null) {
+                newArray[newIndex] = (T) genArray[j];
+                newIndex++;
+            }
+        }
+        return newArray;
+
     }
 }
