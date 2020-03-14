@@ -1,14 +1,10 @@
 package com.zipcodewilmington.arrayutility;
 
 
-
-import com.sun.tools.javac.util.ArrayUtils;
-import sun.security.util.ArrayUtil;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.Stream;
 
 /**
  * Created by leon on 3/6/18.
@@ -71,20 +67,23 @@ public class ArrayUtility <T>{
 
     public T[] removeValue(T valueToRemove) {
         int index = 0;
+        int remCount = getNumberOfOccurrences(valueToRemove);
+        T[] newArray = (T[]) Array.newInstance(genArray[0].getClass(),genArray.length - remCount);
+//        T[] newArray = new T[genArray.length - index];
         for (int i = 0; i < genArray.length; i++) {
-            if (genArray[i].equals(valueToRemove)) {
-                genArray[i] = null;
+            if (!genArray[i].equals(valueToRemove)) {
+                newArray[index] = genArray[i];
                 index++;
             }
         }
-        Integer newIndex = 0;
-        T[] newArray = new T[genArray.length - index];
-        for (int j = 0; j < genArray.length; j++) {
-            if (genArray[j] != null) {
-                newArray[newIndex] = (T) genArray[j];
-                newIndex++;
-            }
-        }
+//        Integer newIndex = 0;
+//
+//        for (int j = 0; j < genArray.length; j++) {
+//            if (genArray[j] != null) {
+//                newArray[newIndex] = (T) genArray[j];
+//                newIndex++;
+//            }
+//        }
         return newArray;
 
     }
